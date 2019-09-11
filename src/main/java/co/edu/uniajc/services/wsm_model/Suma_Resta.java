@@ -8,7 +8,7 @@ public class Suma_Resta {
 		this.operacion = operacion;
 	}
 	
-	public Suma_Resta() {
+	public SumaYResta() {
 		
 	}
 
