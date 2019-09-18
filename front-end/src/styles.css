@@ -1,1 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+	font-family: Helvetica, sans-serif;
+}
+.ui-chips {
+	display: inline-block;
+}
+
+.ui-button {
+	margin-right: 10px !important;
+}
+
+.ui-chips ul {
+	/* border: 2px solid #0356c4 !important; 👈 I have use important */
+	width: 100% !important;
+}
+
+.ui-chips > ul.ui-inputtext .ui-chips-token {
+	font-size: 14px;
+	background: #0356c4 !important; /* 👈 I have use important */
+	/* border: 1px solid #0356c4; */
+}
+
+.border-right {
+	border-right: 1px solid;
+	width: 35%;
+	float: left;
+}
+
+.button-option {
+	width: 65%;
+	float: right;
+	padding-left: 10px;
+}
+
+.text-justify {
+	text-align: justify;
+}
+
+.value-matriz {
+	text-align: center;
+	font-size: 20px;
+}
+table {
+	border-left: 1px solid;
+	border-right: 1px solid;
+}
