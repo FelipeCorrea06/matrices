@@ -44,20 +44,20 @@
           <button pButton type="button" 
                   label="Calcular Inversa" 
                   class="ui-button-raised ui-button-secondary"
-                  [disabled]="matriz[0].length === 0"></button>
+                  [disabled]="matrices.length === 0"></button>
           <button pButton type="button" 
                   label="Sumar Matrices" 
                   class="ui-button-raised ui-button-success"
                   [disabled]="matrices.length < 2"></button>
           <button pButton type="button" label="Restar Matrices" 
                   class="ui-button-raised ui-button-info"
-                  [disabled]="matriz[0].length < 2"></button>
+                  [disabled]="matrices.length < 2"></button>
           <button pButton type="button" label="Multiplicar Matrices" 
                   class="ui-button-raised ui-button-warning"
-                  [disabled]="matriz[0].length < 2"></button>
+                  [disabled]="matrices.length < 2"></button>
           <button pButton type="button" label="Hallar Determinante" 
                   class="ui-button-raised ui-button-danger"
-                  [disabled]="matriz[0].length === 0"></button>
+                  [disabled]="matrices.length === 0"></button>
         </div>
 
     </p-fieldset>
