@@ -1,4 +1,4 @@
-package co.edu.uniajc.services.wsm_model;
+package com.matrices.Servicio_Matrices.service.model;
 
 import java.util.Scanner;
 
@@ -81,3 +81,4 @@ public class Matrices {
 	
 	
 }
+

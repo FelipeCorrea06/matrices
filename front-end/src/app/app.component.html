@@ -28,7 +28,7 @@
             <button  type="button" label="Borrar Datos" 
                        icon="pi pi-trash"
                        pButton
-                       [disabled]="matriz[0].length === 0"
+                       [disabled]="matriz[0].length === 0 && matrices.length === 0"
                        class="ui-button-raised ui-button-danger"
                        (click)="deleteData()"></button>
             
@@ -74,25 +74,16 @@
       </table>
   </div>
   <hr>
-  <div >
-      <table *ngFor="let arreglo let matrices" border="1">
-          <tr *ngFor="let fila2 of arreglo" >
-            <td *ngFor="let col2 of fila2" class="value-matriz">
+  <div *ngIf="matrices.length > 0" class="content-matriz">
+      <table *ngFor="let fila2 of matrices">
+          <tr  *ngFor="let col2 of fila2" >
+            <td class="value-matriz">
               {{col2}}
             </td>
           </tr>
       </table>
   </div>
-
-
-  <!-- <div *ngFor="let fila of matriz" class="matriz">
-    <span class="value-matriz" *ngFor="let col of fila">
-      {{col}}
-    </span>
-  </div> -->
-
-
-
+  
 
 
 </div>

@@ -33,7 +33,7 @@ export class AppComponent {
 			description:
 				'Analista y desarrollador de software, amante de los deportes acuaticos, nadador olympico en charcos y lavaderos.. fiel amante de las tortillas de doña ama!!!',
 			photo: 'pipe.jpg',
-			job: 'Front-End',
+			job: 'Front-End y Back-End',
 			social: '@InfernalRec',
 			red: 'Twitter'
 		},
@@ -41,7 +41,7 @@ export class AppComponent {
 			name: 'Luis Felipe Correa Reina',
 			profession: 'Analista Funcional (El vigilante, el de los tintos,etc...)',
 			description: '',
-			photo: '',
+			photo: 'correa.jpeg',
 			job: 'Back-End',
 			social: '@pipeespipe97',
 			red: 'Instagram'
