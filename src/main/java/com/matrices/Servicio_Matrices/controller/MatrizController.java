@@ -31,9 +31,8 @@ public class MatrizController {
 
 	@CrossOrigin(origins = "*", methods= {RequestMethod.POST})
 	@PostMapping(path="/sumar")
-	public JsonObject sumarMatriz(@RequestBody JsonObject matrices) {
-		return matrices;
-		// return matrizService.calcularSuma(matrices);
+	public int[][] sumarMatriz(@RequestBody String matrices) {
+		return matrizService.calcularSuma(matrices);
 	}
 	
 	@CrossOrigin(origins = "*", methods= {RequestMethod.POST})

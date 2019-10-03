@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { MatricesService } from './services/matrices.service';
 
 @Component({
 	selector: 'app-root',
@@ -9,6 +10,8 @@ import { MenuItem } from 'primeng/api';
 export class AppComponent {
 	items: MenuItem[];
 	activeItem: MenuItem;
+
+	constructor(private service: MatricesService) {}
 
 	ngOnInit() {
 		this.items = [
@@ -24,6 +27,7 @@ export class AppComponent {
 	visible = 0;
 	valFila = [];
 	matriz = [ [] ];
+	matrizResultado = [ [] ];
 	matrices = [];
 
 	student = [
@@ -104,6 +108,45 @@ export class AppComponent {
 	addMatriz() {
 		this.matrices.push(this.matriz);
 		this.matriz = [ [] ];
-		console.log(this.matrices);
+		// console.log(this.matrices);
+	}
+
+	sumarMatriz() {
+		let resp = this.validarDimension(1);
+		if (resp === true) {
+			console.log('Si se pueden sumar');
+		} else {
+			console.log('No se pueden sumar, porque sus dimensiones son distintas');
+		}
+		this.service.postSumarMatrices(this.matrices).subscribe((result: any) => {
+			console.log(result);
+			this.matrizResultado = result;
+		});
+	}
+
+	restarMatriz() {
+		let resp = this.validarDimension(1);
+		if (resp === true) {
+			console.log('Si se pueden restar');
+		} else {
+			console.log('No se pueden restar, porque sus dimensiones son distintas');
+		}
+		this.service.postRestarMatrices(this.matrices).subscribe((result: any) => console.log(result));
+	}
+
+	validarDimension(type: number) {
+		let cantFila = this.matrices[0].length;
+		let cantCol = this.matrices[0][0].length;
+		console.log('fila: ' + cantFila + ' col: ' + cantCol);
+		let cantFila2 = this.matrices[1].length;
+		let cantCol2 = this.matrices[1][0].length;
+		console.log('fila2: ' + cantFila2 + ' col2: ' + cantCol2);
+		if (type === 1) {
+			if (cantFila !== cantFila2 || cantCol !== cantCol2) {
+				return false;
+			} else {
+				return true;
+			}
+		}
 	}
 }

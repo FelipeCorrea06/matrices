@@ -1,0 +1,117 @@
+.rows {
+	//max-width: fit-content;
+	text-align: center;
+}
+
+.columns-container {
+	display: flex;
+}
+
+.columns {
+	margin: 0.3em;
+}
+
+.ui-g-1 {
+	width: 3.5% !important;
+	text-align: center !important;
+}
+
+/* ------------- */
+
+.padre {
+	overflow: hidden;
+	position: relative;
+	height: 100%;
+}
+
+.hijo {
+	position: absolute;
+	height: 100%;
+	// right: 0;
+	// top: 0;
+}
+
+.content-matrix {
+	display: flex;
+}
+
+div {
+	padding: 10px;
+}
+
+#one span,
+#three span {
+	height: 100px;
+	max-height: 10%;
+	width: 10px;
+}
+
+span {
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+}
+
+.left-brace-tl {
+	border-right: 2px solid grey;
+	-webkit-border-bottom-right-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	border-bottom-right-radius: 10px;
+	margin-right: -2px;
+	margin-top: 10px;
+}
+.left-brace-tr {
+	margin-bottom: 10px;
+	border-left: 2px solid grey;
+	-webkit-border-top-left-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	border-top-left-radius: 10px;
+}
+.left-brace-bl {
+	margin-top: -4px;
+	border-right: 2px solid grey;
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-topright: 10px;
+	border-top-right-radius: 10px;
+	margin-right: -2px;
+}
+
+.left-brace-br {
+	margin-bottom: -8px;
+	border-left: 2px solid grey;
+	-webkit-border-bottom-left-radius: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+.right-brace-bl {
+	border-right: 2px solid grey;
+	-webkit-border-bottom-right-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	border-bottom-right-radius: 10px;
+	margin-right: -2px;
+	margin-top: 13px;
+}
+.right-brace-br {
+	margin-bottom: 10px;
+	border-left: 2px solid grey;
+	-webkit-border-top-left-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	border-top-left-radius: 10px;
+}
+.right-brace-tl {
+	margin-top: -4px;
+	border-right: 2px solid grey;
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-topright: 10px;
+	border-top-right-radius: 10px;
+	margin-right: -2px;
+}
+
+.right-brace-tr {
+	margin-bottom: -8px;
+	border-left: 2px solid grey;
+	-webkit-border-bottom-left-radius: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	border-bottom-left-radius: 10px;
+}

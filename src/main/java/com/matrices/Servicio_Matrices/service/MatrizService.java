@@ -16,7 +16,7 @@ public class MatrizService {
 		return matriz;
 	}
 	
-	public JsonArray calcularSuma(JsonArray matrices) {
+	public int[][] calcularSuma(String matrices) {
 		MatrizSumaResta matrizSumar = new MatrizSumaResta();
 		return matrizSumar.sumarMatriz(matrices);
 	}

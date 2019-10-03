@@ -16,13 +16,15 @@
 
     <p-fieldset legend="Agregar Valores">
         <div class="ui-inputgroup">
-            <p-chips [(ngModel)]="valFila" ></p-chips>            
+            <p-chips [(ngModel)]="valFila" 
+                     [disabled]="matrices.length > 1"></p-chips>            
         </div>
         <hr>
         <div class="border-right">
             <p-button  type="button" label="Agregar Fila" 
                        icon="pi pi-plus"
                        class="ui-button-raised "
+                       [disabled]="matrices.length > 1"
                        (click)="addRow()"></p-button>
 
             <button  type="button" label="Borrar Datos" 
@@ -44,12 +46,15 @@
           <button pButton type="button" 
                   label="Calcular Inversa" 
                   class="ui-button-raised ui-button-secondary"
-                  [disabled]="matrices.length === 0"></button>
+                  [disabled]="matrices.length === 0 || matrices.length > 1"></button>
           <button pButton type="button" 
                   label="Sumar Matrices" 
+                  (click)="sumarMatriz()"
                   class="ui-button-raised ui-button-success"
                   [disabled]="matrices.length < 2"></button>
-          <button pButton type="button" label="Restar Matrices" 
+          <button pButton type="button" 
+                  label="Restar Matrices" 
+                  (click)="restarMatriz()"
                   class="ui-button-raised ui-button-info"
                   [disabled]="matrices.length < 2"></button>
           <button pButton type="button" label="Multiplicar Matrices" 
@@ -57,13 +62,17 @@
                   [disabled]="matrices.length < 2"></button>
           <button pButton type="button" label="Hallar Determinante" 
                   class="ui-button-raised ui-button-danger"
-                  [disabled]="matrices.length === 0"></button>
+                  [disabled]="matrices.length === 0 || matrices.length > 1"></button>
         </div>
 
     </p-fieldset>
 
   
-  <!-- show values matriz -->
+  <!-- componente para ver los values matriz -->
+  <!-- <app-matrix-printer [_input]="matriz"></app-matrix-printer> -->
+  
+  
+
   <div >
       <table *ngIf="matriz[0].length > 0">
           <tr *ngFor="let fila of matriz" >
@@ -74,14 +83,23 @@
       </table>
   </div>
   <hr>
-  <div *ngIf="matrices.length > 0" class="content-matriz">
-      <table *ngFor="let fila2 of matrices">
+  <div *ngIf="matrices.length > 0" class="content-matriz ui-g-12">
+      <table *ngFor="let fila2 of matrices" class="ui-g-3">
           <tr  *ngFor="let col2 of fila2" >
-            <td class="value-matriz">
-              {{col2}}
+            <td *ngFor="let val of col2" class="value-matriz">
+              {{val}}
             </td>
           </tr>
       </table>
+
+      <table *ngIf="matrizResultado[0].length > 0" class="ui-g-3">
+        <tr *ngFor="let fila of matrizResultado" >
+          <td *ngFor="let col of fila" class="value-matriz">
+            {{col}}
+          </td>
+        </tr>
+    </table>
+
   </div>
   
 
