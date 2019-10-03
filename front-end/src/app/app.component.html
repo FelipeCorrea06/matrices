@@ -1,134 +1,157 @@
-<h3>Operaciones con Matrices</h3>
-<p-tabMenu [model]="items" [activeItem]="activeItem" >
-  <ng-template pTemplate="item" let-item let-i="index" >
-      <div style="position: relative; text-align: center; min-width: 10em" (click)="viewData(item.id)">
-          <div class="ui-menuitem-icon" [ngClass]="item.icon" *ngIf="item.icon" style="font-size: 2em"></div>
-          <div class="ui-menuitem-text">
-              {{item.label}}
-          </div>
-          
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div  class="py-4">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" 
+                   id="home-tab" data-toggle="tab" 
+                   href="#home" role="tab" 
+                   aria-controls="home" aria-selected="true">Operar Matrices</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="documentation-tab" 
+                   data-toggle="tab" href="#documentation" 
+                   role="tab" aria-controls="documentation" 
+                   aria-selected="false">Documentación</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="info-tab" 
+                   data-toggle="tab" href="#info" 
+                   role="tab" aria-controls="info" 
+                   aria-selected="false">Información del Sistema</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" id="about-tab" 
+                     data-toggle="tab" href="#about" 
+                     role="tab" aria-controls="about" 
+                     aria-selected="false">Acerca De</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                  <p-fieldset legend="Agregar Valores">
+                      <div class="ui-inputgroup">
+                          <p-chips [(ngModel)]="valFila" 
+                                   [disabled]="matrices.length > 1"></p-chips>            
+                      </div>
+                      <hr>
+                      <div class="border-right">
+                          <button type="button" label="Agregar Fila" 
+                                  icon="pi pi-plus"
+                                  pButton
+                                  [disabled]="matrices.length > 1"
+                                  class="ui-button-raised "
+                                  (click)="addRow()"></button>
+              
+                          <button  type="button" label="Borrar Datos" 
+                                     icon="pi pi-trash"
+                                     pButton
+                                     [disabled]="matriz[0].length === 0 && matrices.length === 0"
+                                     class="ui-button-raised ui-button-danger"
+                                     (click)="deleteData()"></button>
+                          
+                          <button pButton type="button" 
+                                  label="Agregar Matriz" 
+                                  class="ui-button-raised ui-button-success"
+                                  icon="pi pi-plus-circle"
+                                  [disabled]="matriz[0].length === 0"
+                                  (click)="addMatriz()"
+                                  ></button>
+                      </div>
+                      <div class="button-option">
+                        <button pButton type="button" 
+                                label="Calcular Inversa" 
+                                class="ui-button-raised ui-button-secondary"
+                                [disabled]="matrices.length === 0 || matrices.length > 1"></button>
+                        <button pButton type="button" 
+                                label="Sumar Matrices" 
+                                (click)="sumarMatriz()"
+                                class="ui-button-raised ui-button-success"
+                                [disabled]="matrices.length < 2"></button>
+                        <button pButton type="button" 
+                                label="Restar Matrices" 
+                                (click)="restarMatriz()"
+                                class="ui-button-raised ui-button-info"
+                                [disabled]="matrices.length < 2"></button>
+                        <button pButton type="button" label="Multiplicar Matrices" 
+                                class="ui-button-raised ui-button-warning"
+                                [disabled]="matrices.length < 2"></button>
+                        <button pButton type="button" label="Hallar Determinante" 
+                                class="ui-button-raised ui-button-danger"
+                                [disabled]="matrices.length === 0 || matrices.length > 1"></button>
+                      </div>
+                  </p-fieldset>
+              
+              <div class="row">
+                  <div class="col-12 py-4">
+                      <table *ngIf="matriz[0].length > 0">
+                          <tr *ngFor="let fila of matriz" >
+                            <td *ngFor="let col of fila" class="value-matriz">
+                              {{col}}
+                            </td>
+                          </tr>
+                      </table>
+                      <hr>
+                  </div>
+                  
+                  <div class="col-lg-12" *ngIf="matrices.length > 0">
+                      <div  *ngFor="let fila2 of matrices" 
+                           class="content-matriz col-lg-4">
+                        <table class="tabla">
+                            <tr *ngFor="let col2 of fila2" >
+                              <td *ngFor="let val of col2" class="value-matriz">
+                                {{val}}
+                              </td>
+                            </tr>
+                        </table>
+                      </div>
+                  </div>
+                      <div class="col-lg-12 py-4" *ngIf="matrizResultado[0].length > 0">
+                          <p>El resultado de la {{operacion}} es:</p> 
+                      </div>
+
+                      <div class="col-lg-12">
+                          <table *ngIf="matrizResultado[0].length > 0" class="">
+                              <tr *ngFor="let fila of matrizResultado" >
+                                <td *ngFor="let col of fila" class="value-matriz">
+                                  {{col}}
+                                </td>
+                              </tr>
+                          </table>
+                      </div>
+                    
+                  </div>
+              </div>
+
+              <div class="tab-pane fade" id="documentation" role="tabpanel" aria-labelledby="documentation-tab">...</div>
+              <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">...</div>
+              <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
+                <div class="row">
+                    <div class="col-lg-12 py-4">
+                      <h4>Desarrollado por:</h4>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let person of student">
+                        <div class="card" style="width: 360px;">
+                            <div class="card-header text-center">{{person.job}}</div>
+                            <img src="assets/images/{{person.photo}}" class="card-img-top" alt="">
+                            <div class="card-body">
+                              <!-- <h5 class="card-title">{{person.name}}</h5> -->
+                              <h6>{{person.name}}</h6>
+                              <hr>
+                              <h4>{{person.profession}}</h4>
+                              <p class="card-text text-justify">{{person.description}}</p>
+                            </div>
+                            <div class="card-footer">
+                                <strong *ngIf="person.social !== ''">{{person.red}}: </strong>{{person.social}}
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
       </div>
       
-  </ng-template>
-</p-tabMenu>
-
-<div *ngIf="visible === 0">
-
-    <p-fieldset legend="Agregar Valores">
-        <div class="ui-inputgroup">
-            <p-chips [(ngModel)]="valFila" 
-                     [disabled]="matrices.length > 1"></p-chips>            
-        </div>
-        <hr>
-        <div class="border-right">
-            <p-button  type="button" label="Agregar Fila" 
-                       icon="pi pi-plus"
-                       class="ui-button-raised "
-                       [disabled]="matrices.length > 1"
-                       (click)="addRow()"></p-button>
-
-            <button  type="button" label="Borrar Datos" 
-                       icon="pi pi-trash"
-                       pButton
-                       [disabled]="matriz[0].length === 0 && matrices.length === 0"
-                       class="ui-button-raised ui-button-danger"
-                       (click)="deleteData()"></button>
-            
-            <button pButton type="button" 
-                    label="Agregar Matriz" 
-                    class="ui-button-raised ui-button-success"
-                    icon="pi pi-plus-circle"
-                    [disabled]="matriz[0].length === 0"
-                    (click)="addMatriz()"
-                    ></button>
-        </div>
-        <div class="button-option">
-          <button pButton type="button" 
-                  label="Calcular Inversa" 
-                  class="ui-button-raised ui-button-secondary"
-                  [disabled]="matrices.length === 0 || matrices.length > 1"></button>
-          <button pButton type="button" 
-                  label="Sumar Matrices" 
-                  (click)="sumarMatriz()"
-                  class="ui-button-raised ui-button-success"
-                  [disabled]="matrices.length < 2"></button>
-          <button pButton type="button" 
-                  label="Restar Matrices" 
-                  (click)="restarMatriz()"
-                  class="ui-button-raised ui-button-info"
-                  [disabled]="matrices.length < 2"></button>
-          <button pButton type="button" label="Multiplicar Matrices" 
-                  class="ui-button-raised ui-button-warning"
-                  [disabled]="matrices.length < 2"></button>
-          <button pButton type="button" label="Hallar Determinante" 
-                  class="ui-button-raised ui-button-danger"
-                  [disabled]="matrices.length === 0 || matrices.length > 1"></button>
-        </div>
-
-    </p-fieldset>
-
-  
-  <!-- componente para ver los values matriz -->
-  <!-- <app-matrix-printer [_input]="matriz"></app-matrix-printer> -->
-  
-  
-
-  <div >
-      <table *ngIf="matriz[0].length > 0">
-          <tr *ngFor="let fila of matriz" >
-            <td *ngFor="let col of fila" class="value-matriz">
-              {{col}}
-            </td>
-          </tr>
-      </table>
-  </div>
-  <hr>
-  <div *ngIf="matrices.length > 0" class="content-matriz ui-g-12">
-      <table *ngFor="let fila2 of matrices" class="ui-g-3">
-          <tr  *ngFor="let col2 of fila2" >
-            <td *ngFor="let val of col2" class="value-matriz">
-              {{val}}
-            </td>
-          </tr>
-      </table>
-
-      <table *ngIf="matrizResultado[0].length > 0" class="ui-g-3">
-        <tr *ngFor="let fila of matrizResultado" >
-          <td *ngFor="let col of fila" class="value-matriz">
-            {{col}}
-          </td>
-        </tr>
-    </table>
-
-  </div>
-  
-
-
-</div>
-
-<!-- Tab About -->
-<div *ngIf="visible === 3">
-    <div class="ui-g">
-      <div class="ui-g-12">
-        <h2>Desarrollado por:</h2>
-      </div>
-      <div class="ui-lg-4 ui-md-6 ui-sm-12" *ngFor="let person of student">
-          <p-card header="{{person.name}}" subheader="{{person.job}}" [style]="{width: '360px'}" styleClass="ui-card-shadow">
-              <p-header>
-                  <img *ngIf="person.photo !== ''" src="Card" src="assets/images/{{person.photo}}">
-              </p-header>
-              <div>
-                <h3>{{person.profession}}</h3>
-                <p class="text-justify">{{person.description}}</p>
-              </div>
-              <p-footer class="bg-footer">
-                  <strong *ngIf="person.social !== ''">{{person.red}}: </strong>{{person.social}}
-              </p-footer>
-            </p-card>
-      </div>
     </div>
-  
+  </div>
 </div>
-
-
-

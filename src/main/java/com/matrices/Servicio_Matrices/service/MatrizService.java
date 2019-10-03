@@ -18,11 +18,12 @@ public class MatrizService {
 	
 	public int[][] calcularSuma(String matrices) {
 		MatrizSumaResta matrizSumar = new MatrizSumaResta();
-		return matrizSumar.sumarMatriz(matrices);
+		return matrizSumar.sumarYRestarMatriz(matrices, 1);
 	}
 	
-	public String[] calcularResta(String matriz[]) {
-		return matriz;
+	public int[][] calcularResta(String matrices) {
+		MatrizSumaResta matrizRestar = new MatrizSumaResta();
+		return matrizRestar.sumarYRestarMatriz(matrices, 2);
 	}
 	
 	public String[] calcularMultiplicacion(String matriz[]) {

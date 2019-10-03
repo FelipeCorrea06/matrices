@@ -37,7 +37,7 @@ public class MatrizController {
 	
 	@CrossOrigin(origins = "*", methods= {RequestMethod.POST})
 	@PostMapping(path="/restar")
-	public String[] restarMatriz(@RequestBody String matrices[]) {
+	public int[][] restarMatriz(@RequestBody String matrices) {
 		return matrizService.calcularResta(matrices);
 	}
 	

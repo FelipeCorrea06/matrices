@@ -3,8 +3,7 @@ package com.matrices.Servicio_Matrices.service.model;
 
 public class MatrizSumaResta {
 	
-	public int[][] sumarMatriz(String matrices) {
-		StringBuffer resultadoString = new StringBuffer();
+	public int[][] sumarYRestarMatriz(String matrices, int tipo) {
 		ProcesarMatrices procesar = new ProcesarMatrices();
 		int [][] resultado;
 		int fila=0, col=0;
@@ -23,9 +22,16 @@ public class MatrizSumaResta {
 		
 		for (int i=0; i < fila; i++) {
 			for (int j = 0; j < col; j++) {
-				resultado[i][j] = matrizA[i][j] + matrizB[i][j];
+				if (tipo == 1) {
+					resultado[i][j] = matrizA[i][j] + matrizB[i][j];
+				} else {
+					resultado[i][j] = matrizA[i][j] - matrizB[i][j];
+				}
+				
 			}
 		}
 		return resultado;
 	}
+	
+	
 }

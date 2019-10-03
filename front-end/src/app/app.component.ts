@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MatricesService } from './services/matrices.service';
+import Swal from 'sweetalert2';
 
 @Component({
 	selector: 'app-root',
@@ -8,27 +9,14 @@ import { MatricesService } from './services/matrices.service';
 	styleUrls: [ './app.component.css' ]
 })
 export class AppComponent {
-	items: MenuItem[];
-	activeItem: MenuItem;
-
 	constructor(private service: MatricesService) {}
 
-	ngOnInit() {
-		this.items = [
-			{ id: '0', label: 'Matrices', icon: 'fa fa-fw fa-th' },
-			{ id: '1', label: 'Documentación', icon: 'fa fa-fw fa-book' },
-			{ id: '2', label: 'Información del Sistema', icon: 'fa fa-fw fa-info-circle' },
-			{ id: '3', label: 'Acerca De', icon: 'fa fa-fw fa-address-card' }
-		];
-
-		this.activeItem = this.items[0];
-	}
-
-	visible = 0;
 	valFila = [];
 	matriz = [ [] ];
 	matrizResultado = [ [] ];
 	matrices = [];
+	tipo = 0;
+	operacion = '';
 
 	student = [
 		{
@@ -63,10 +51,6 @@ export class AppComponent {
 
 	x = 1;
 	y = 1;
-
-	viewData(num: string) {
-		this.visible = parseInt(num, 10);
-	}
 
 	addRow() {
 		this.y = this.matriz[0].length;
@@ -112,35 +96,40 @@ export class AppComponent {
 	}
 
 	sumarMatriz() {
+		this.tipo = 1;
+		this.operacion = 'Suma';
 		let resp = this.validarDimension(1);
 		if (resp === true) {
-			console.log('Si se pueden sumar');
+			this.service.postSumarMatrices(this.matrices).subscribe((result: any) => {
+				this.matrizResultado = result;
+			});
 		} else {
-			console.log('No se pueden sumar, porque sus dimensiones son distintas');
+			let mensaje = 'No se pueden sumar las matrices, porque sus dimensiones no son iguales.';
+			this.mostrarMensajeError(mensaje);
 		}
-		this.service.postSumarMatrices(this.matrices).subscribe((result: any) => {
-			console.log(result);
-			this.matrizResultado = result;
-		});
 	}
 
 	restarMatriz() {
+		this.tipo = 2;
+		this.operacion = 'Resta';
 		let resp = this.validarDimension(1);
 		if (resp === true) {
-			console.log('Si se pueden restar');
+			this.service.postRestarMatrices(this.matrices).subscribe((result: any) => {
+				this.matrizResultado = result;
+			});
 		} else {
-			console.log('No se pueden restar, porque sus dimensiones son distintas');
+			let mensaje = 'No se pueden restar las matrices, porque sus dimensiones no son iguales.';
+			this.mostrarMensajeError(mensaje);
 		}
-		this.service.postRestarMatrices(this.matrices).subscribe((result: any) => console.log(result));
 	}
 
 	validarDimension(type: number) {
 		let cantFila = this.matrices[0].length;
 		let cantCol = this.matrices[0][0].length;
-		console.log('fila: ' + cantFila + ' col: ' + cantCol);
+		//console.log('fila: ' + cantFila + ' col: ' + cantCol);
 		let cantFila2 = this.matrices[1].length;
 		let cantCol2 = this.matrices[1][0].length;
-		console.log('fila2: ' + cantFila2 + ' col2: ' + cantCol2);
+		//console.log('fila2: ' + cantFila2 + ' col2: ' + cantCol2);
 		if (type === 1) {
 			if (cantFila !== cantFila2 || cantCol !== cantCol2) {
 				return false;
@@ -148,5 +137,14 @@ export class AppComponent {
 				return true;
 			}
 		}
+	}
+
+	mostrarMensajeError(mensaje: string) {
+		Swal.fire({
+			title: 'Error!',
+			text: mensaje,
+			type: 'error',
+			confirmButtonText: 'Aceptar'
+		});
 	}
 }
