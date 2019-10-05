@@ -2,6 +2,9 @@ package com.matrices.Servicio_Matrices.service;
 
 import org.springframework.stereotype.Service;
 
+import com.matrices.Servicio_Matrices.service.model.MatrizDeterminante;
+import com.matrices.Servicio_Matrices.service.model.MatrizInversa;
+import com.matrices.Servicio_Matrices.service.model.MatrizMultiplicar;
 import com.matrices.Servicio_Matrices.service.model.MatrizSumaResta;
 
 import com.google.gson.JsonArray;
@@ -12,8 +15,9 @@ import com.google.gson.JsonParser;
 @Service
 public class MatrizService {
 	
-	public String[] calcularInversa(String matriz[]) {
-		return matriz;
+	public int[][] calcularInversa(String matriz) {
+		MatrizMultiplicar matrizMulti = new MatrizMultiplicar();
+		return matrizMulti.multiplicarMatriz(matriz);
 	}
 	
 	public int[][] calcularSuma(String matrices) {
@@ -26,12 +30,14 @@ public class MatrizService {
 		return matrizRestar.sumarYRestarMatriz(matrices, 2);
 	}
 	
-	public String[] calcularMultiplicacion(String matriz[]) {
-		return matriz;
+	public int[][] calcularMultiplicacion(String matriz) {
+		MatrizInversa inversa = new MatrizInversa();
+		return inversa.inversaMatriz(matriz);
 	}
 	
-	public String[] calcularDeterminante(String matriz[]) {
-		return matriz;
+	public String calcularDeterminante(String matriz) {
+		MatrizDeterminante determinante = new MatrizDeterminante();
+		return determinante.hallarDeterminante(matriz);
 	}
 	
 }

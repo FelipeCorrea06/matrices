@@ -15,8 +15,9 @@ export class AppComponent {
 	matriz = [ [] ];
 	matrizResultado = [ [] ];
 	matrices = [];
-	tipo = 0;
+	visible = 0;
 	operacion = '';
+	determinante = '';
 
 	student = [
 		{
@@ -87,6 +88,9 @@ export class AppComponent {
 		this.valFila = [];
 		this.matriz = [ [] ];
 		this.matrices = [];
+		this.matrizResultado = [ [] ];
+		this.determinante = '';
+		this.visible = 0;
 	}
 
 	addMatriz() {
@@ -96,8 +100,8 @@ export class AppComponent {
 	}
 
 	sumarMatriz() {
-		this.tipo = 1;
-		this.operacion = 'Suma';
+		this.visible = 1;
+		this.operacion = 'la Suma';
 		let resp = this.validarDimension(1);
 		if (resp === true) {
 			this.service.postSumarMatrices(this.matrices).subscribe((result: any) => {
@@ -110,8 +114,8 @@ export class AppComponent {
 	}
 
 	restarMatriz() {
-		this.tipo = 2;
-		this.operacion = 'Resta';
+		this.visible = 1;
+		this.operacion = 'la Resta';
 		let resp = this.validarDimension(1);
 		if (resp === true) {
 			this.service.postRestarMatrices(this.matrices).subscribe((result: any) => {
@@ -121,6 +125,31 @@ export class AppComponent {
 			let mensaje = 'No se pueden restar las matrices, porque sus dimensiones no son iguales.';
 			this.mostrarMensajeError(mensaje);
 		}
+	}
+
+	inversaMatriz() {
+		this.visible = 1;
+		this.operacion = 'la Inversa';
+		this.service.postInversaMatrices(this.matrices).subscribe((result: any) => {
+			this.matrizResultado = result;
+		});
+	}
+
+	multiplicarMatriz() {
+		this.visible = 1;
+		this.operacion = 'la Multiplicación';
+		this.service.postMultiplicarMatrices(this.matrices).subscribe((result: any) => {
+			this.matrizResultado = result;
+		});
+	}
+
+	determinanteMatriz() {
+		this.visible = 1;
+		this.operacion = 'el Determinante';
+		this.service.postDeterminanteMatrices(this.matrices).subscribe((result: any) => {
+			console.log(result);
+			this.determinante = '' + result;
+		});
 	}
 
 	validarDimension(type: number) {

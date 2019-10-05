@@ -25,7 +25,7 @@ public class MatrizController {
 	
 	@CrossOrigin(origins = "*", methods= {RequestMethod.POST})
 	@PostMapping(path="/inversa")
-	public String[] inversaMatriz(@RequestBody String matrices[]) {
+	public int[][] inversaMatriz(@RequestBody String matrices) {
 		return matrizService.calcularInversa(matrices);
 	}
 
@@ -43,13 +43,13 @@ public class MatrizController {
 	
 	@CrossOrigin(origins = "*", methods= {RequestMethod.POST})
 	@PostMapping(path="/multiplicar")
-	public String[] multiplicarMatriz(@RequestBody String matrices[]) {
+	public int[][] multiplicarMatriz(@RequestBody String matrices) {
 		return matrizService.calcularMultiplicacion(matrices);
 	}
 	
 	@CrossOrigin(origins = "*", methods= {RequestMethod.POST})
 	@PostMapping(path="/determinante")
-	public String[] determinanteMatriz(@RequestBody String matrices[]) {
+	public String determinanteMatriz(@RequestBody String matrices) {
 		return matrizService.calcularDeterminante(matrices);
 	}
 	

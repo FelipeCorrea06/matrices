@@ -62,6 +62,7 @@
                       <div class="button-option">
                         <button pButton type="button" 
                                 label="Calcular Inversa" 
+                                (click)="inversaMatriz()"
                                 class="ui-button-raised ui-button-secondary"
                                 [disabled]="matrices.length === 0 || matrices.length > 1"></button>
                         <button pButton type="button" 
@@ -76,9 +77,11 @@
                                 [disabled]="matrices.length < 2"></button>
                         <button pButton type="button" label="Multiplicar Matrices" 
                                 class="ui-button-raised ui-button-warning"
+                                (click)="multiplicarMatriz()"
                                 [disabled]="matrices.length < 2"></button>
                         <button pButton type="button" label="Hallar Determinante" 
                                 class="ui-button-raised ui-button-danger"
+                                (click)="determinanteMatriz()"
                                 [disabled]="matrices.length === 0 || matrices.length > 1"></button>
                       </div>
                   </p-fieldset>
@@ -107,8 +110,9 @@
                         </table>
                       </div>
                   </div>
-                      <div class="col-lg-12 py-4" *ngIf="matrizResultado[0].length > 0">
-                          <p>El resultado de la {{operacion}} es:</p> 
+                      <div class="col-lg-12 py-4" *ngIf="visible === 1">
+                          <p *ngIf="matrizResultado[0].length > 0">El resultado de calcular {{operacion}} es:</p> 
+                          <span *ngIf="determinante !== ''">El resultado de calcular {{operacion}} es: {{determinante}}</span>
                       </div>
 
                       <div class="col-lg-12">

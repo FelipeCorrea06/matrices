@@ -7,16 +7,16 @@ public class ProcesarMatrices {
 	public String[] procesarMatriz(String matrices) {
 		String replace1 = matrices.replace("[[[", "[");
 		String replace2 = replace1.replace("]]]", "]");
-		String replace3 = replace2.replace("]],[[", "]-[");
-		String [] matriz = replace3.split("-");
+		String replace3 = replace2.replace("]],[[", "]_[");
+		String [] matriz = replace3.split("_");
 		return matriz;
 	}
 	
 	public String[] generarMatriz(String matrix) {
-		String replace1 = matrix.replace("],[", "]-[");
+		String replace1 = matrix.replace("],[", "]_[");
 		String replace2 = replace1.replace("[", "");
 		String replace3 = replace2.replace("]", "");
-		String [] vect = replace3.split("-");
+		String [] vect = replace3.split("_");
 		return vect;
 	}
 	
