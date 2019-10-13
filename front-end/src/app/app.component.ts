@@ -42,8 +42,9 @@ export class AppComponent {
 		{
 			name: 'José Carlos Avila',
 			profession: 'Auxiliar de Sistemas',
-			description: 'Hermano de PHP',
-			photo: '',
+			description:
+				'Desarrollador PHP, javascript, jquery Diseñador de DB MySQL, PostgreSQL. Ciclista empedernido.',
+			photo: 'jose_castro.jpeg',
 			job: 'Back-End',
 			social: 'jcavila44@misena.edu.co',
 			red: 'E-mail'

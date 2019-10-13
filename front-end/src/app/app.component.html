@@ -60,29 +60,37 @@
                                   ></button>
                       </div>
                       <div class="button-option">
-                        <button pButton type="button" 
-                                label="Calcular Inversa" 
-                                (click)="inversaMatriz()"
-                                class="ui-button-raised ui-button-secondary"
-                                [disabled]="matrices.length === 0 || matrices.length > 1"></button>
-                        <button pButton type="button" 
-                                label="Sumar Matrices" 
-                                (click)="sumarMatriz()"
-                                class="ui-button-raised ui-button-success"
-                                [disabled]="matrices.length < 2"></button>
-                        <button pButton type="button" 
-                                label="Restar Matrices" 
-                                (click)="restarMatriz()"
-                                class="ui-button-raised ui-button-info"
-                                [disabled]="matrices.length < 2"></button>
-                        <button pButton type="button" label="Multiplicar Matrices" 
-                                class="ui-button-raised ui-button-warning"
-                                (click)="multiplicarMatriz()"
-                                [disabled]="matrices.length < 2"></button>
-                        <button pButton type="button" label="Hallar Determinante" 
-                                class="ui-button-raised ui-button-danger"
-                                (click)="determinanteMatriz()"
-                                [disabled]="matrices.length === 0 || matrices.length > 1"></button>
+
+                          <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                              <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" 
+                                        class="btn btn-success btn-sm dropdown-toggle" 
+                                        data-toggle="dropdown" 
+                                        aria-haspopup="true" 
+                                        aria-expanded="false"
+                                        [disabled]="matrices.length === 0">
+                                        <i class="fas fa-cogs"></i> 
+                                  Operaciones Disponibles
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                  <a class="dropdown-item" 
+                                     (click)="determinanteMatriz()"
+                                     [hidden]="matrices.length === 0 || matrices.length > 1">Hallar Determinante</a>
+                                  <a class="dropdown-item" 
+                                     (click)="inversaMatriz()"
+                                     [hidden]="matrices.length === 0 || matrices.length > 1">Hallar La Inversa</a>
+                                  <a class="dropdown-item" 
+                                     (click)="sumarMatriz()"
+                                     [hidden]="matrices.length < 2">Sumar Matrices</a>
+                                  <a class="dropdown-item" 
+                                     (click)="restarMatriz()"
+                                     [hidden]="matrices.length < 2">Restar Matrices</a>
+                                  <a class="dropdown-item" 
+                                     (click)="multiplicarMatriz()"
+                                     [hidden]="matrices.length < 2">Multiplicar Matrices</a>
+                                </div>
+                              </div>
+                            </div>
                       </div>
                   </p-fieldset>
               
@@ -99,17 +107,19 @@
                   </div>
                   
                   <div class="col-lg-12" *ngIf="matrices.length > 0">
-                      <div  *ngFor="let fila2 of matrices" 
+                      <div  *ngFor="let fila2 of matrices; let i = index" 
                            class="content-matriz col-lg-4">
-                        <table class="tabla">
-                            <tr *ngFor="let col2 of fila2" >
-                              <td *ngFor="let val of col2" class="value-matriz">
-                                {{val}}
-                              </td>
-                            </tr>
-                        </table>
+                      
+                          <table class="tabla">
+                              <tr *ngFor="let col2 of fila2" >
+                                <td *ngFor="let val of col2" class="value-matriz">
+                                  {{val}}
+                                </td>
+                              </tr>
+                          </table>
                       </div>
                   </div>
+
                       <div class="col-lg-12 py-4" *ngIf="visible === 1">
                           <p *ngIf="matrizResultado[0].length > 0">El resultado de calcular {{operacion}} es:</p> 
                           <span *ngIf="determinante !== ''">El resultado de calcular {{operacion}} es: {{determinante}}</span>
@@ -133,7 +143,7 @@
               <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
                 <div class="row">
                     <div class="col-lg-12 py-4">
-                      <h4>Desarrollado por:</h4>
+                      <h4>Desarrollado por los estudiantes:</h4>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let person of student">
                         <div class="card" style="width: 360px;">

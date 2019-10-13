@@ -16,8 +16,8 @@ import com.google.gson.JsonParser;
 public class MatrizService {
 	
 	public int[][] calcularInversa(String matriz) {
-		MatrizMultiplicar matrizMulti = new MatrizMultiplicar();
-		return matrizMulti.multiplicarMatriz(matriz);
+		MatrizInversa inversa = new MatrizInversa();
+		return inversa.inversaMatriz(matriz);
 	}
 	
 	public int[][] calcularSuma(String matrices) {
@@ -31,8 +31,8 @@ public class MatrizService {
 	}
 	
 	public int[][] calcularMultiplicacion(String matriz) {
-		MatrizInversa inversa = new MatrizInversa();
-		return inversa.inversaMatriz(matriz);
+		MatrizMultiplicar matrizMulti = new MatrizMultiplicar();
+		return matrizMulti.multiplicarMatriz(matriz);
 	}
 	
 	public String calcularDeterminante(String matriz) {
