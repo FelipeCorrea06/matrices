@@ -138,14 +138,143 @@
                   </div>
               </div>
 
-              <div class="tab-pane fade" id="documentation" role="tabpanel" aria-labelledby="documentation-tab">...</div>
+              <div class="tab-pane fade" id="documentation" role="tabpanel" aria-labelledby="documentation-tab">
+                <div class="row">
+                  <div class="col-12 text-center py-4">
+                    <h1>Manual de Usuario</h1>	
+                    <p>Bienvenido al manual de usuario, aqui encontraras los pasos que debes realizar al momento de ejecutar alguna acción en el sistema.</p>
+                    <hr>
+                  </div>
+              
+                  <div class="col-12 col-md-6 ">
+                    <h4 class="text-center">Opciones del Sistema</h4>
+                    <hr>
+                    <img src="assets/images/option_system.png" width="100%">
+                    <hr>
+                    <ul>
+                      <li>
+                        <strong>Operar Matrices:</strong>
+                        <p>Esta sesión de la aplicación esta dedicada a los procesos y operaciones que se pueden realizar con los valores ingresados en las matrices.</p>
+                      </li>
+                      <li>
+                        <strong>Documentación:</strong>
+                        <p>Manual de uso. (Página Actual)</p>
+                      </li>
+                      <li>
+                        <strong>Información del Sistema:</strong>
+                        <p>Datos correspondientes al desarrollo de la aplicación, Framework, Lenguaje de programación, librerias utilizadas, versiones y demás.</p>
+                      </li>
+                      <li>
+                        <strong>Acerca de:</strong>
+                        <p>Desarrolladores de la aplciación.</p>
+                      </li>
+                    </ul>
+                  </div>	
+              
+                  <div class="col-12 col-md-6 ">
+                    <h4 class="text-center">Operar Matrices</h4>
+                    <hr>
+                    <div class="overflow-auto operar-matriz">
+                      <h6>Interfaz de Usuario</h6>
+                    <img src="assets/images/operar_matriz.png" width="100%">
+                    <h6 class="py-4">Opciones del usuario:</h6>
+                    <ul>
+                      <li>
+                        <strong>Agregar valores</strong>
+                        <p>En esta parte se agregan los valores de la matriz, estos se ingresan por fila.</p>
+                        <img src="assets/images/agregar_valor.png" >
+                        <p>Los valores se ingresan en la caja de texto (Input)</p>
+                        <img src="assets/images/valor_1.png">
+                        <p>una vez ingresado, se debe presionar la tecla "Enter" para que el sistema lo detecte como un valor nuevo.</p>
+                        <img src="assets/images/valor_2.png">
+                        <hr>
+              
+                      </li>
+                      <li>
+                        <strong>Agregar Fila</strong>
+                        <p>Una vez ya se tienen los valores deseados para la fila de la matriz, se presiona el botón <span class="badge badge-primary"> <i class="fas fa-plus"></i> Agregar Fila</span>, al momento de presionar esta opción se debe tener en cuenta lo siguiente:</p>
+                        <ul>
+                          <li>
+                            <p>Si se agregan 3 valores (1, 2, 3) es decir que esta fila tendrá 3 columnas.</p>
+                            <img src="assets/images/add_fila_1.png">
+                            <p>Al momento de presionar el botón <span class="badge badge-primary"> <i class="fas fa-plus"></i> Agregar Fila</span>, el resultado seria el siguiente, una matriz de 1x3 ==> 1 Fila con 3 Columnas.</p>
+                            <img src="assets/images/matriz_1.png">
+                            <p>Al momento de agregar la segunda fila se tiene que tener en cuenta esta misma cantidad de columnas, para este ejemplo estamos creando una matriz con n filas y 3 columnas.</p>
+                            <img src="assets/images/matriz_2.png">
+                            <p>El resultado seria el siguiente, una vez agreguemos esta siguiente Fila:</p>
+                            <img src="assets/images/matriz_3.png">
+                            <hr>
+                          </li>
+                          <li>
+                            <p>Cambiando de ejemplo, que pasaria si creamos la primera fila de la siguiente manera:</p>
+                            <img src="assets/images/add_fila_1.png">
+                            <p>El resultado seria el siguiente:</p>
+                            <img src="assets/images/add_fila_1_matriz.png">
+                            <p>Ahora le agregamos una segunda fila, pero en esta ocasión no vamos a agregar los 3 valores o las 3 columnas, sino que agregaremos 2 valores correspondientes a la columna 1 y la columna 2</p>
+                            <img src="assets/images/add_fila_2.png">
+                            <p>en tal caso el sistema entendera que la tercera columna esta vacia y la rellenara con un 0 (cero).</p>
+                            <img src="assets/images/add_fila_3.png">
+                            <p>Ahora a nuestra matriz de 2X3 vamos a agregarle una siguiente fila, pero en esta ocasión seran 4 valores o columnas, las que queremos agregar</p>
+                            <img src="assets/images/add_fila_4.png">
+                            <p>Asi mismo como el sistema relleno el espacio o la columna faltante, el sistema entiende que se cambio la dimensión de la matriz, pasando de ser nX3 a nX4, donde n es la cantidad de Filas, y con esto se procede a rellenar los valores faltantes con 0 (ceros).</p>
+                            <img src="assets/images/add_fila_5.png">
+                          </li>
+                        </ul>
+                        <hr>
+                      </li>
+                      <li>
+                        <strong>Borrar Datos</strong>
+                        <ul>
+                          <li>
+                            <p>Si los datos ingresados no son correctos o en tal caso se desea realizar una nueva operacion con matrices diferentes, es en estos momentos donde <span class="badge badge-danger"> <i class="fas fa-trash-alt"></i> Borrar Datos</span> es la mejor opción.</p>
+                          </li>
+                          <li>
+                            <p>Al presionar el boton <span class="badge badge-danger"> <i class="fas fa-trash-alt"></i> Borrar Datos</span> Todo se reinicia, de tal forma que los resultados, los valores y las operaciones disponibles, retornan a su valor por defecto.</p>
+                          </li>
+                        </ul>
+                        
+                      </li>
+                      <li>
+                        <strong>Agregar Matriz</strong>
+                        <p>Cuando ya se tenga la matriz completamente llena, tal como se desea, se debe presionar el botón <span class="badge badge-success"> <i class="fas fa-plus-circle"></i> Agregar Matriz</span>, esto permitira guardar la matriz y habilitar las operaciones correspondientes.</p>
+                        <img src="assets/images/add_matriz_2.png" width="100%">
+                        <p>El maáximo número de matrices que se pueden operar es: <strong>2</strong>, una vez alcanzado este limite, las opciones de <span class="badge badge-primary"> <i class="fas fa-plus"></i> Agregar Fila</span> y <span class="badge badge-success"> <i class="fas fa-plus-circle"></i> Agregar Matriz</span> se inhabilitaran, de igual forma las <span class="badge badge-success"> <i class="fas fa-cogs"></i>  Operaciones Disponibles</span> </p>
+                      </li>
+                      <li>
+                        <strong>Operaciones Disponibles</strong>
+                        <p>Una vez se tenga la matriz o las matrices, las opciones que se muestran en el botón <span class="badge badge-success"> <i class="fas fa-cogs"></i>  Operaciones Disponibles</span> se mostrarán o se ocultaran. Las operaciones que se pueden realizar son las siguientes:</p>
+                        <ul>
+                          <li>Hallar el determinante</li>
+                          <li>Hallar la matriz inversa</li>
+                          <li>Hallar la suma de 2 matrices</li>
+                          <li>Hallar la resta de 2 matrices</li>
+                          <li>Hallar la multiplicación de 2 matrices</li>
+                        </ul>
+                        <p>Si se desea realizar operaciones con una sola matriz, entonces las operaciones disponibles serán las siguientes:</p>
+                        <img src="assets/images/operacion_1.png" width="">
+                        <p>Si se desea realizar operaciones con dos (2) matrices, entonces las operaciones disponibles serán las siguientes:</p>
+                        <img src="assets/images/operacion_2.png" width="">
+                      </li>
+                    </ul>
+              
+                  </div>
+                  <div class="col-12">
+                    <hr>
+                  </div>	
+                  
+                </div>
+                    </div>
+                    
+              </div>
+
               <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">...</div>
+
               <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
                 <div class="row">
                     <div class="col-lg-12 py-4">
                       <h4>Desarrollado por los estudiantes:</h4>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let person of student">
+                    <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let person of student">
                         <div class="card" style="width: 360px;">
                             <div class="card-header text-center">{{person.job}}</div>
                             <img src="assets/images/{{person.photo}}" class="card-img-top" alt="">
