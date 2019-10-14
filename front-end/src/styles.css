@@ -60,3 +60,7 @@ table {
 .operar-matriz {
 	height: 500px;
 }
+
+a {
+	cursor: pointer;
+}
