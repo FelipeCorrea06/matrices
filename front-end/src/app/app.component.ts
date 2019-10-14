@@ -117,7 +117,7 @@ export class AppComponent {
 	restarMatriz() {
 		this.visible = 1;
 		this.operacion = 'la Resta';
-		let resp = this.validarDimension(1);
+		let resp = this.validarDimension(2);
 		if (resp === true) {
 			this.service.postRestarMatrices(this.matrices).subscribe((result: any) => {
 				this.matrizResultado = result;
@@ -139,9 +139,16 @@ export class AppComponent {
 	multiplicarMatriz() {
 		this.visible = 1;
 		this.operacion = 'la Multiplicación';
-		this.service.postMultiplicarMatrices(this.matrices).subscribe((result: any) => {
-			this.matrizResultado = result;
-		});
+		let resp = this.validarDimension(3);
+		if (resp === true) {
+			this.service.postMultiplicarMatrices(this.matrices).subscribe((result: any) => {
+				this.matrizResultado = result;
+			});
+		} else {
+			let mensaje =
+				'No se pueden multiplicar las matrices, porque sus dimensiones no cumplen con el criterio permitido.';
+			this.mostrarMensajeError(mensaje);
+		}
 	}
 
 	determinanteMatriz() {
@@ -160,8 +167,14 @@ export class AppComponent {
 		let cantFila2 = this.matrices[1].length;
 		let cantCol2 = this.matrices[1][0].length;
 		//console.log('fila2: ' + cantFila2 + ' col2: ' + cantCol2);
-		if (type === 1) {
+		if (type === 1 || type === 2) {
 			if (cantFila !== cantFila2 || cantCol !== cantCol2) {
+				return false;
+			} else {
+				return true;
+			}
+		} else if (type === 3) {
+			if (cantCol !== cantFila2) {
 				return false;
 			} else {
 				return true;
