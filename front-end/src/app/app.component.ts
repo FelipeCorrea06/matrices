@@ -17,7 +17,7 @@ export class AppComponent {
 	matrices = [];
 	visible = 0;
 	operacion = '';
-	determinante = '';
+	determinante = '0';
 
 	student = [
 		{
@@ -129,11 +129,25 @@ export class AppComponent {
 	}
 
 	inversaMatriz() {
-		this.visible = 1;
 		this.operacion = 'la Inversa';
-		this.service.postInversaMatrices(this.matrices).subscribe((result: any) => {
-			this.matrizResultado = result;
-		});
+		let resp = this.validarDimension(4);
+		this.calcularDeterminante();
+		if (this.determinante !== '0' && resp !== false) {
+			this.service.postInversaMatrices(this.matrices).subscribe((result: any) => {
+				this.matrizResultado = result;
+			});
+			this.visible = 1;
+		} else {
+			this.visible = 0;
+			let mensaje = '';
+			if (this.determinante === '0') {
+				mensaje = 'La matriz no tiene inversa';
+				this.mostrarMensajeSuccess(mensaje);
+			} else {
+				mensaje = 'No se pueden calcular la inversa de la  matriz, porque sus dimensiones no son iguales.';
+				this.mostrarMensajeError(mensaje);
+			}
+		}
 	}
 
 	multiplicarMatriz() {
@@ -152,29 +166,56 @@ export class AppComponent {
 	}
 
 	determinanteMatriz() {
-		this.visible = 1;
 		this.operacion = 'el Determinante';
-		this.service.postDeterminanteMatrices(this.matrices).subscribe((result: any) => {
-			console.log(result);
-			this.determinante = '' + result;
-		});
+		let resp = this.calcularDeterminante();
+		if (resp === false) {
+			let mensaje = 'No se pueden calcular el determinante de la  matriz, porque sus dimensiones no son iguales.';
+			this.mostrarMensajeError(mensaje);
+		} else {
+			this.visible = 1;
+		}
+	}
+
+	calcularDeterminante() {
+		let resp = this.validarDimension(5);
+		if (resp === true) {
+			this.service.postDeterminanteMatrices(this.matrices).subscribe((result: any) => {
+				console.log(result);
+				this.determinante = '' + result;
+			});
+		}
+		return resp;
 	}
 
 	validarDimension(type: number) {
 		let cantFila = this.matrices[0].length;
 		let cantCol = this.matrices[0][0].length;
 		//console.log('fila: ' + cantFila + ' col: ' + cantCol);
-		let cantFila2 = this.matrices[1].length;
-		let cantCol2 = this.matrices[1][0].length;
+		let cantFila2 = 0;
+		let cantCol2 = 0;
+		if (type !== 4 && type !== 5) {
+			cantFila2 = this.matrices[1].length;
+			cantCol2 = this.matrices[1][0].length;
+		}
+
 		//console.log('fila2: ' + cantFila2 + ' col2: ' + cantCol2);
+		// sumar y restar
 		if (type === 1 || type === 2) {
 			if (cantFila !== cantFila2 || cantCol !== cantCol2) {
 				return false;
 			} else {
 				return true;
 			}
+			// multiplicación
 		} else if (type === 3) {
 			if (cantCol !== cantFila2) {
+				return false;
+			} else {
+				return true;
+			}
+			// inversa y determinante
+		} else if (type === 4 || type === 5) {
+			if (cantFila !== cantCol) {
 				return false;
 			} else {
 				return true;
@@ -187,6 +228,15 @@ export class AppComponent {
 			title: 'Error!',
 			text: mensaje,
 			type: 'error',
+			confirmButtonText: 'Aceptar'
+		});
+	}
+
+	mostrarMensajeSuccess(mensaje: string) {
+		Swal.fire({
+			title: 'Resultado!',
+			text: mensaje,
+			type: 'success',
 			confirmButtonText: 'Aceptar'
 		});
 	}
