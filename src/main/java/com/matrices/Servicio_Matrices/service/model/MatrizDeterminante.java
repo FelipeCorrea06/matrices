@@ -10,7 +10,7 @@ public class MatrizDeterminante {
 		
 		String [] matriz = procesar.procesarMatriz(matrices);
 		String [] matriz1 = procesar.generarMatriz(matriz[0]);
-		int [][] matrizA = procesar.convertirMatriz(matriz1);
+		double  [][] matrizA = procesar.convertirMatriz(matriz1);
 		
 		resultado = String.valueOf(MatrizDeterminante.determinante(matrizA));
 		return resultado;
@@ -25,12 +25,12 @@ public class MatrizDeterminante {
      * @param matriz
      * @return
      */
-	public static int determinante(int[][] matriz) {
+	public static double determinante(double[][] matriz) {
 		assert matriz != null;
 		assert matriz.length > 0;
 		assert matriz.length == matriz[0].length;
 
-		int determinante = 0;
+		double determinante = 0;
 
 		int filas = matriz.length;
 		int columnas = matriz[0].length;
@@ -44,7 +44,7 @@ public class MatrizDeterminante {
 
 		for (int columna = 0; columna < columnas; columna++) {
 			// Obtiene el adjunto de fila=0, columna=columna, pero sin el signo.
-			int[][] submatriz = getSubmatriz(matriz, filas, columnas, columna);
+			double [][] submatriz = getSubmatriz(matriz, filas, columnas, columna);
 			determinante = determinante + signo * matriz[0][columna] * determinante(submatriz);
 			signo *= -1;
 		}
@@ -62,8 +62,8 @@ public class MatrizDeterminante {
      * @param columna Columna que se quiere eliminar, junto con la fila=0
      * @return Una matriz de N-1 x N-1 elementos
      */
-	public static int[][] getSubmatriz(int[][] matriz, int filas, int columnas, int columna) {
-		int[][] submatriz = new int[filas - 1][columnas - 1];
+	public static double[][] getSubmatriz(double[][] matriz, int filas, int columnas, int columna) {
+		double[][] submatriz = new double[filas - 1][columnas - 1];
 		int contador = 0;
 		for (int j = 0; j < columnas; j++) {
 			if (j == columna) {

@@ -31,19 +31,19 @@ public class MatrizController {
 
 	@CrossOrigin(origins = "*", methods= {RequestMethod.POST})
 	@PostMapping(path="/sumar")
-	public int[][] sumarMatriz(@RequestBody String matrices) {
+	public double[][] sumarMatriz(@RequestBody String matrices) {
 		return matrizService.calcularSuma(matrices);
 	}
 	
 	@CrossOrigin(origins = "*", methods= {RequestMethod.POST})
 	@PostMapping(path="/restar")
-	public int[][] restarMatriz(@RequestBody String matrices) {
+	public double[][] restarMatriz(@RequestBody String matrices) {
 		return matrizService.calcularResta(matrices);
 	}
 	
 	@CrossOrigin(origins = "*", methods= {RequestMethod.POST})
 	@PostMapping(path="/multiplicar")
-	public int[][] multiplicarMatriz(@RequestBody String matrices) {
+	public double[][] multiplicarMatriz(@RequestBody String matrices) {
 		return matrizService.calcularMultiplicacion(matrices);
 	}
 	

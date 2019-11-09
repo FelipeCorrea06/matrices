@@ -20,17 +20,17 @@ public class MatrizService {
 		return inversa.inversaMatriz(matriz);
 	}
 	
-	public int[][] calcularSuma(String matrices) {
+	public double[][] calcularSuma(String matrices) {
 		MatrizSumaResta matrizSumar = new MatrizSumaResta();
 		return matrizSumar.sumarYRestarMatriz(matrices, 1);
 	}
 	
-	public int[][] calcularResta(String matrices) {
+	public double[][] calcularResta(String matrices) {
 		MatrizSumaResta matrizRestar = new MatrizSumaResta();
 		return matrizRestar.sumarYRestarMatriz(matrices, 2);
 	}
 	
-	public int[][] calcularMultiplicacion(String matriz) {
+	public double[][] calcularMultiplicacion(String matriz) {
 		MatrizMultiplicar matrizMulti = new MatrizMultiplicar();
 		return matrizMulti.multiplicarMatriz(matriz);
 	}

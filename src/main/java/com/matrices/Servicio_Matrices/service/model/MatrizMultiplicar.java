@@ -2,7 +2,7 @@ package com.matrices.Servicio_Matrices.service.model;
 
 public class MatrizMultiplicar {
 
-	public int[][] multiplicarMatriz(String matrices) {
+	public double [][] multiplicarMatriz(String matrices) {
 
 		ProcesarMatrices procesar = new ProcesarMatrices();
 
@@ -10,14 +10,14 @@ public class MatrizMultiplicar {
 		String[] matriz1 = procesar.generarMatriz(matriz[0]);
 		String[] matriz2 = procesar.generarMatriz(matriz[1]);
 
-		int[][] matrizA = procesar.convertirMatriz(matriz1);
-		int[][] matrizB = procesar.convertirMatriz(matriz2);
+		double [][] matrizA = procesar.convertirMatriz(matriz1);
+		double [][] matrizB = procesar.convertirMatriz(matriz2);
 
 		int filaA = matrizA.length;
 		int colB = matrizB[0].length;
 		int colA = matrizA[0].length;
-		int tempMultiplicacion;
-		int resultado[][] = new int[filaA][colB];
+		double tempMultiplicacion;
+		double resultado[][] = new double[filaA][colB];
 
 		for (int f = 0; f < filaA; f++) {
 			for (int c = 0; c < colB; c++) {
