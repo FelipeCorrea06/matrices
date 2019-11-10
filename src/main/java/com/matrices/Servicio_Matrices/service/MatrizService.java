@@ -15,7 +15,7 @@ import com.google.gson.JsonParser;
 @Service
 public class MatrizService {
 	
-	public int[][] calcularInversa(String matriz) {
+	public double[][] calcularInversa(String matriz) {
 		MatrizInversa inversa = new MatrizInversa();
 		return inversa.inversaMatriz(matriz);
 	}

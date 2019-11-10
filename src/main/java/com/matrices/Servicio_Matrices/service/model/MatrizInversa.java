@@ -4,16 +4,16 @@ public class MatrizInversa {
 
 	// debe devolver un int [][]//aparte//public double[][] inversaMatriz(double[][]
 	// matrices) {
-	public int[][] inversaMatriz(String matrices) {
+	public double[][] inversaMatriz(String matrices) {
 		ProcesarMatrices procesar = new ProcesarMatrices();
 
 		String[] matriz = procesar.procesarMatriz(matrices);
 		String[] matriz1 = procesar.generarMatriz(matriz[0]);
 
-		// int[][] matrizA = procesar.convertirMatriz(matriz1);
-		int[][] matrizA = null;
+	    double[][] matrizA = procesar.convertirMatriz(matriz1);
+		//int[][] matrizA = null;
 
-		int d[][] = null;
+	    double d[][] = null;
 		try {
 
 			d = MatrizInversa.invert(matrizA);
@@ -25,11 +25,11 @@ public class MatrizInversa {
 		return d;
 	}
 
-	public static int[][] invert(int a[][]) {
+	public static double[][] invert(double a[][]) {
 
 		int n = a.length;
-		int x[][] = new int[n][n];
-		int b[][] = new int[n][n];
+		double x[][] = new double[n][n];
+		double b[][] = new double[n][n];
 		int index[] = new int[n];
 		for (int i = 0; i < n; ++i) {
 			b[i][i] = 1;
@@ -64,7 +64,7 @@ public class MatrizInversa {
 
 	// Method to carry out the partial-pivoting Gaussian
 	// elimination. Here index[] stores pivoting order.
-	public static void gaussian(int a[][], int index[]) {
+	public static void gaussian(double a[][], int index[]) {
 
 		int n = index.length;
 		double c[] = new double[n];
@@ -105,7 +105,7 @@ public class MatrizInversa {
 			index[j] = index[k];
 			index[k] = itmp;
 			for (int i = j + 1; i < n; ++i) {
-				int pj = a[index[i]][j] / a[index[j]][j];
+				int pj = (int) (a[index[i]][j] / a[index[j]][j]);
 
 				// Record pivoting ratios below the diagonal
 				a[index[i]][j] = pj;

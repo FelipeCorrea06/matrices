@@ -25,7 +25,7 @@ public class MatrizController {
 	
 	@CrossOrigin(origins = "*", methods= {RequestMethod.POST})
 	@PostMapping(path="/inversa")
-	public int[][] inversaMatriz(@RequestBody String matrices) {
+	public double[][] inversaMatriz(@RequestBody String matrices) {
 		return matrizService.calcularInversa(matrices);
 	}
 
