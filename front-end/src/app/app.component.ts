@@ -129,7 +129,12 @@ export class AppComponent {
 	}
 
 	inversaMatriz() {
+
+		
 		this.operacion = 'la Inversa';
+		
+		this.visible = 1;
+
 		let resp = this.validarDimension(4);
 		this.calcularDeterminante();
 		if (this.determinante !== '0' && resp !== false) {
