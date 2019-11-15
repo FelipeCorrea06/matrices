@@ -17,7 +17,7 @@ export class AppComponent {
 	matrices = [];
 	visible = 0;
 	operacion = '';
-	determinante = '0';
+	determinante: any = '0';
 
 	student = [
 		{
@@ -129,23 +129,35 @@ export class AppComponent {
 	}
 
 	inversaMatriz() {
-
-		
 		this.operacion = 'la Inversa';
-		
-		this.visible = 1;
-
 		let resp = this.validarDimension(4);
-		this.calcularDeterminante();
-		if (this.determinante !== '0' && resp !== false) {
+		let calcular = this.calcularDeterminante();
+		console.log(calcular);
+		console.log(this.determinante);
+		let mensaje = '';
+
+		let seguir = false;
+		if (
+			this.determinante === '0' &&
+			this.determinante === 0 &&
+			this.determinante !== null &&
+			this.determinante !== ''
+		) {
+			seguir = true;
+		} else {
+			mensaje = 'La matriz no tiene inversa';
+			this.mostrarMensajeSuccess(mensaje);
+		}
+
+		if (resp !== false && seguir === true) {
 			this.service.postInversaMatrices(this.matrices).subscribe((result: any) => {
 				this.matrizResultado = result;
 			});
 			this.visible = 1;
 		} else {
 			this.visible = 0;
-			let mensaje = '';
-			if (this.determinante === '0') {
+
+			if (this.determinante === '0' || this.determinante === 0 || this.determinante === '') {
 				mensaje = 'La matriz no tiene inversa';
 				this.mostrarMensajeSuccess(mensaje);
 			} else {
@@ -182,10 +194,11 @@ export class AppComponent {
 	}
 
 	calcularDeterminante() {
-		let resp = this.validarDimension(5);
+		let resp = false;
+		resp = this.validarDimension(5);
 		if (resp === true) {
 			this.service.postDeterminanteMatrices(this.matrices).subscribe((result: any) => {
-				console.log(result);
+				//console.log(result);
 				this.determinante = '' + result;
 			});
 		}
